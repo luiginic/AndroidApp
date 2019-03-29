@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TCPClient$MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="client.test.MainActivity">
 
     <Button
         android:id="@+id/buttonSend"
@@ -17,4 +17,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Enter your data for today !"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="navigate2DataEntry"/>
+
 </android.support.constraint.ConstraintLayout>
