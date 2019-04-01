@@ -7,6 +7,7 @@ import android.util.LruCache;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 
@@ -15,6 +16,7 @@ public class ApiManager {
     private Context context;
     private ImageLoader imageLoader;
     private RequestQueue queue;
+
 
     private ApiManager(Context context){
         this.context=context;

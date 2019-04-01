@@ -5,4 +5,6 @@
     <string name="treatment">View treatment</string>
     <string name="reactions">Reactions</string>
     <string name="title_activity_stats_screen">StatsScreen</string>
+    <string name="my_apointments">My apointments</string>
+    <string name="make_an_apointment">Make an apointment</string>
 </resources>
