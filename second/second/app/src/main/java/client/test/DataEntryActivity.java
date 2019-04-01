@@ -11,6 +11,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import client.test.model.PacientDailyInfo;
+import client.test.networking.PacientDataEntryClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DataEntryActivity extends AppCompatActivity {
 
@@ -99,6 +108,7 @@ public class DataEntryActivity extends AppCompatActivity {
         });
 
 
+
     }
 
 
@@ -108,7 +118,7 @@ public class DataEntryActivity extends AppCompatActivity {
         topBar.setTitle(Html.fromHtml("<font color=\"black\">" + "Tell us what you do" + "</font>"));
     }
 
-    //This method gets called whenever plus of minus buttons
+    //This method gets called whenever plus or minus buttons
     // in the 'Water' cardview are pressed
     public void changeNumberOfGlasses(View view) {
         int viewId = view.getId();
@@ -126,5 +136,40 @@ public class DataEntryActivity extends AppCompatActivity {
         else glassesText.setText("glasses");
 
 
+    }
+
+
+    //This method gets called whenever user presses send button
+    public void sendDailyData(View view) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        PacientDataEntryClient client = retrofit.create(PacientDataEntryClient.class);
+        PacientDailyInfo info = getAllPacientDataInfo();
+
+        Call<PacientDailyInfo> call = client.sendDailyData(info);
+
+        call.enqueue(new Callback<PacientDailyInfo>() {
+            @Override
+            public void onResponse(Call<PacientDailyInfo> call, Response<PacientDailyInfo> response) {
+                Toast.makeText(DataEntryActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<PacientDailyInfo> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private PacientDailyInfo getAllPacientDataInfo() {
+        Integer water       = Integer.parseInt(numberOfGlassesTV.getText().toString());
+        Integer weight      = Integer.parseInt(weightInKgTv.getText().toString());
+        Integer pulse       = Integer.parseInt(pulseBPM.getText().toString());
+        Integer temperature = Integer.parseInt(tempInCelsius.getText().toString());
+
+        return new PacientDailyInfo(water, weight, pulse, temperature);
     }
 }
