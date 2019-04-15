@@ -1,27 +1,40 @@
-package client.test;
+package client.test.data_collection;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import client.test.model.PacientDailyInfo;
-import client.test.networking.PacientDataEntryClient;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import client.test.R;
+import client.test.data_collection.model.PacientDailyInfo;
+import client.test.data_collection.networking.PacientDataEntryClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DataEntryActivity extends AppCompatActivity {
+public class DataEntryActivity extends AppCompatActivity implements SensorEventListener {
+
+    public static final String TAG = "DataEntryActivity";
 
     private TextView numberOfGlassesTV;
     private TextView glassesText;
@@ -32,6 +45,9 @@ public class DataEntryActivity extends AppCompatActivity {
     private SeekBar seekBarPulse;
     private TextView tempInCelsius;
     private SeekBar seekBarTemp;
+    private TextView stepsText;
+    private SensorManager sensorManager;
+    private Sensor stepCounter;
 
 
 
@@ -52,6 +68,8 @@ public class DataEntryActivity extends AppCompatActivity {
 
         tempInCelsius = findViewById(R.id.tempInCelsius);
         seekBarTemp = findViewById(R.id.seekBarTemp);
+
+        stepsText = findViewById(R.id.number_of_stepsTV);
 
         seekBarWeight.setMax(200);
         seekBarTemp.setMax(20);
@@ -107,6 +125,12 @@ public class DataEntryActivity extends AppCompatActivity {
             }
         });
 
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
+            stepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        } else {
+            Toast.makeText(this, "This device does not have a step counter sensor", Toast.LENGTH_LONG).show();
+        }
 
 
     }
@@ -141,7 +165,8 @@ public class DataEntryActivity extends AppCompatActivity {
 
     //This method gets called whenever user presses send button
     public void sendDailyData(View view) {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000/")
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.2.166:5000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -169,7 +194,38 @@ public class DataEntryActivity extends AppCompatActivity {
         Integer weight      = Integer.parseInt(weightInKgTv.getText().toString());
         Integer pulse       = Integer.parseInt(pulseBPM.getText().toString());
         Integer temperature = Integer.parseInt(tempInCelsius.getText().toString());
+        Integer steps       = Integer.parseInt(stepsText.getText().toString());
 
-        return new PacientDailyInfo(water, weight, pulse, temperature);
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String today = df.format(Calendar.getInstance().getTime());
+
+        Log.d(TAG, "getAllPacientDataInfo: "+ today);
+
+        return new PacientDailyInfo(water, weight, pulse, temperature, steps, today);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        Log.d(TAG, "onSensorChanged: BEAT!");
+        int stepsCount = (int)sensorEvent.values[0];
+        stepsText.setText(stepsCount + "");
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(this, stepCounter, SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
     }
 }

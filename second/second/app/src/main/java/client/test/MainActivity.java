@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import client.test.data_collection.DataEntryActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     public static String TAG = "MainActivity";

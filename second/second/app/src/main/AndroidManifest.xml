@@ -3,6 +3,7 @@
     package="client.test">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BODY_SENSORS"/>
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DataEntryActivity"></activity>
+        <activity android:name=".data_collection.DataEntryActivity"></activity>
+
+
     </application>
 
 </manifest>
