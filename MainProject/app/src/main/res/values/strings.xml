@@ -23,4 +23,14 @@
     </string>
     <string name="pacient_id">Pacient ID</string>
     <string name="continueBtn">Continue</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="heart_rate_units">bpm</string>
+    <string name="hydratation">Hydratation</string>
+    <string name="hydratation_units">l</string>
+    <string name="weight">Weight</string>
+    <string name="weight_units">Kg</string>
+    <string name="steps">Steps</string>
+    <string name="steps_units">steps</string>
+    <string name="temperature">Temperature</string>
+    <string name="temperature_units">°C</string>
 </resources>
