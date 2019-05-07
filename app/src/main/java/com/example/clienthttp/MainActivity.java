@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private  CircleImageView avatar;
     private TextView name;
     private PersonalData personalData = new PersonalData();
+    private Button infoScreen;
 
 
 
@@ -42,23 +45,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewTreatmentBtn = findViewById(R.id.viewTreatmentBtn);
 
-        if(!viewTreatmentBtn.isEnabled())
-            viewTreatmentBtn.setBackgroundResource(R.drawable.button_gradient_disabled);
-        else viewTreatmentBtn.setBackgroundResource(R.drawable.button_gradient);
+        if(isNetworkAvailable()){
+            viewTreatmentBtn.setEnabled(true);
+            setButtonCollor(viewTreatmentBtn);
+        } else {
+            viewTreatmentBtn.setEnabled(false);
+            setButtonCollor(viewTreatmentBtn);
+        }
+
+
         name = findViewById(R.id.name);
         personalData = (PersonalData) getIntent().getSerializableExtra("account");
         name.setText(personalData.getName());
         setAvatar();
-//        name.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goToAccountDetails();
-//            }
-//        });
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAccountDetails();
+            }
+        });
+        viewTreatmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToDataEntry();
+            }
+        });
+    }
+
+    private void goToDataEntry(){
+        Intent intent = new Intent(this,DataEntryActivity.class );
+        intent.putExtra("personalInfo",personalData);
+        this.startActivity(intent);
     }
 
     private void goToAccountDetails(){
         Intent intent = new Intent(this, AccountInformationScreen.class);
+        intent.putExtra("personalInfo",personalData);
+        intent.putExtra("avatar",(Bitmap)avatar.getDrawingCache());
         this.startActivity(intent);
     }
 
@@ -99,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Bitmap bitmap) {
                         Log.d(TAG,"Image recived");
                         avatar.setImageBitmap(bitmap);
+                        avatar.buildDrawingCache();
                         Log.d(TAG,"Avatar is set");
                     }
                 }, 0, 0, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,
@@ -109,6 +133,19 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         ApiManager.getInstance(this.getApplicationContext()).addToRequestQueue(imageRequest);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void setButtonCollor(Button btn){
+        if(!btn.isEnabled())
+            btn.setBackgroundResource(R.drawable.button_gradient_disabled);
+        else btn.setBackgroundResource(R.drawable.button_gradient);
     }
 
 
