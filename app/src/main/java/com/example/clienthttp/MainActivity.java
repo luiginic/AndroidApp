@@ -5,11 +5,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +27,7 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.example.clienthttp.treatment.ViewPagerAdapter;
 
 import personal.data.PersonalData;
 
@@ -35,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private  CircleImageView avatar;
     private TextView name;
     private PersonalData personalData = new PersonalData();
-    private Button infoScreen;
-
-
+    private ViewPager mesurementsPager;
+    private ViewPagerAdapter mesurementsPagerAdapter;
+    private TabLayout mesurementsTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +57,12 @@ public class MainActivity extends AppCompatActivity {
             setButtonCollor(viewTreatmentBtn);
         }
 
-
         name = findViewById(R.id.name);
-        personalData = (PersonalData) getIntent().getSerializableExtra("account");
+        retrieveAccountDetails();
         name.setText(personalData.getName());
+
         setAvatar();
+
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
                 goToDataEntry();
             }
         });
+
+        mesurementsPager = findViewById(R.id.mesurmentsView);
+        mesurementsPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mesurementsPager.setAdapter(mesurementsPagerAdapter);
+        mesurementsTab = findViewById(R.id.tabLayout);
+        mesurementsTab.setupWithViewPager(mesurementsPager);
+
     }
 
     private void goToDataEntry(){
@@ -78,9 +90,19 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+    private void retrieveAccountDetails(){
+        SharedPreferences prefs = getSharedPreferences("info.log", MODE_PRIVATE);
+        String restoredText = prefs.getString("pacientId", null);
+        if (restoredText != null) {
+            //personalData.setPacientCode(prefs.getString("pacientId","")); //null is the default value.
+            personalData.setName(prefs.getString("name", getResources().getString(R.string.name_goes_here)));//"getResources().getString(R.string.name_goes_here)" = "Name goes here" and it  is the default value.
+           //personalData.setPhoneNumber(prefs.getString("phoneNo",getResources().getString(R.string.phoneNo_default)));//"getResources().getString(R.string.phoneNo_default)" = "No Phone No. provided" - default value
+        }
+    }
+
     private void goToAccountDetails(){
         Intent intent = new Intent(this, AccountInformationScreen.class);
-        intent.putExtra("personalInfo",personalData);
+//        intent.putExtra("personalInfo",personalData);
         intent.putExtra("avatar",(Bitmap)avatar.getDrawingCache());
         this.startActivity(intent);
     }
