@@ -71,12 +71,14 @@ public class MainActivity extends AppCompatActivity {
                 goToAccountDetails();
             }
         });
+
         viewTreatmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToDataEntry();
             }
         });
+
         makeAnAppointmentBtn=findViewById(R.id.makeAnAppointment);
         makeAnAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override

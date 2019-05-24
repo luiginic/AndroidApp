@@ -8,19 +8,92 @@ public class PacientDailyInfo {
     private Integer steps;
     private String today;
     private Integer patient_id;
+    private Integer calories;
 
-    public PacientDailyInfo(Integer water, Integer weight, Integer pulse, Integer temperature, Integer steps, String today, Integer pacientId) {
+    public PacientDailyInfo(Integer water, Integer weight, Integer pulse, Integer temperature, Integer steps, String today, Integer patient_id) {
         this.water = water;
         this.weight = weight;
         this.pulse = pulse;
         this.temperature = temperature;
         this.steps = steps;
         this.today = today;
-        this.patient_id = pacientId;
+        this.patient_id = patient_id;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
+    }
+
+    public Integer getWater() {
+        return water;
+    }
+
+    public void setWater(Integer water) {
+        this.water = water;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Integer getPulse() {
+        return pulse;
+    }
+
+    public void setPulse(Integer pulse) {
+        this.pulse = pulse;
+    }
+
+    public Integer getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Integer temperature) {
+        this.temperature = temperature;
+    }
+
+    public Integer getSteps() {
+        return steps;
+    }
+
+    public void setSteps(Integer steps) {
+        this.steps = steps;
+    }
+
+    public String getToday() {
+        return today;
+    }
+
+    public void setToday(String today) {
+        this.today = today;
+    }
+
+    public Integer getPatient_id() {
+        return patient_id;
+    }
+
+    public void setPatient_id(Integer patient_id) {
+        this.patient_id = patient_id;
     }
 
     @Override
     public String toString() {
-        return water.toString()+ ',' + weight.toString()+',' + pulse.toString() +','+ temperature.toString() + ',' + steps.toString();
+        return "PacientDailyInfo{" +
+                "water=" + water +
+                ", weight=" + weight +
+                ", pulse=" + pulse +
+                ", temperature=" + temperature +
+                ", steps=" + steps +
+                ", today='" + today + '\'' +
+                ", patient_id=" + patient_id +
+                '}';
     }
 }

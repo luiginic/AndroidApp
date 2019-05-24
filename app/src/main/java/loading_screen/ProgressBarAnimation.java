@@ -118,7 +118,7 @@ public class ProgressBarAnimation extends Animation {
     }
 
     private void setFields(String patientId){
-        String jsonURL = "https://ro-medical-app.herokuapp.com/api/patients/get?id="+patientId;
+        String jsonURL = "https://ro-medical-app.herokuapp.com/api/patients/get?id=" + patientId;
 //        String imgURL = "https://cdn.shopify.com/s/files/1/3026/6974/files/happy-alpacas-landscape_1024x1024.jpg?v=1532619630";
 
         personalData = new PersonalData();

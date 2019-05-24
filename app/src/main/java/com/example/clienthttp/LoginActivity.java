@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         checkAccountInfo();
 
-        pacientID = (TextInputEditText) findViewById(R.id.pacient_id);
+        pacientID =  findViewById(R.id.pacient_id);
         pacientID.setHint(R.string.pacient_id);
 
 
