@@ -30,12 +30,13 @@
 
                 <ImageView
                     android:id="@+id/waterDropImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/watter"/>
 
                 <TextView
                     android:id="@+id/water_tw"
@@ -129,12 +130,13 @@
 
                 <ImageView
                     android:id="@+id/weightImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/wight"
                     />
 
                 <TextView
@@ -217,12 +219,13 @@
 
                 <ImageView
                     android:id="@+id/pulseImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/bpm"/>
 
                 <TextView
                     android:id="@+id/pulseTV"
@@ -303,12 +306,13 @@
 
                 <ImageView
                     android:id="@+id/temperatureImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/temperature"
                     />
 
                 <TextView
@@ -391,12 +395,13 @@
 
                 <ImageView
                     android:id="@+id/stepsImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/steps"
                     />
 
                 <TextView
@@ -413,7 +418,7 @@
 
                 <TextView
                     android:id="@+id/number_of_stepsTV"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
@@ -461,12 +466,13 @@
 
                 <ImageView
                     android:id="@+id/calImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/kcal"
                     />
 
                 <TextView
