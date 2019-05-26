@@ -1,3 +1,7 @@
+/*
+    Luigi Nicola: created
+    Gabriel Agache: modified and added all relevant code
+ */
 package com.example.clienthttp;
 
 import android.content.SharedPreferences;
@@ -50,6 +54,8 @@ public class DataEntryActivity extends AppCompatActivity implements SensorEventL
     private TextView tempInCelsius;
     private SeekBar seekBarTemp;
     private TextView stepsText;
+    private SeekBar seekBarCal;
+    private TextView calValue;
     private SensorManager sensorManager;
     private Sensor stepCounter;
 
@@ -75,8 +81,29 @@ public class DataEntryActivity extends AppCompatActivity implements SensorEventL
 
         stepsText = findViewById(R.id.number_of_stepsTV);
 
+        calValue = findViewById(R.id.calValue);
+        seekBarCal = findViewById(R.id.seekBarCal);
+
         seekBarWeight.setMax(200);
         seekBarTemp.setMax(20);
+        seekBarCal.setMax(9999);
+
+        seekBarCal.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                calValue.setText(""+i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         seekBarWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -199,6 +226,7 @@ public class DataEntryActivity extends AppCompatActivity implements SensorEventL
         Integer pulse       = Integer.parseInt(pulseBPM.getText().toString());
         Integer temperature = Integer.parseInt(tempInCelsius.getText().toString());
         Integer steps       = Integer.parseInt(stepsText.getText().toString());
+        Integer calories    = Integer.parseInt(calValue.getText().toString());
         SharedPreferences prefs = getSharedPreferences("info.log",MODE_PRIVATE);
         Integer pacient_id  = Integer.parseInt(prefs.getString("pacientId",null));
 
@@ -207,7 +235,7 @@ public class DataEntryActivity extends AppCompatActivity implements SensorEventL
 
         Log.d(TAG, "getAllPacientDataInfo: "+ today);
 
-        return new PacientDailyInfo(water, weight, pulse, temperature, steps, today,pacient_id);
+        return new PacientDailyInfo(water, weight, pulse, temperature, steps, today,pacient_id,calories);
     }
 
     @Override

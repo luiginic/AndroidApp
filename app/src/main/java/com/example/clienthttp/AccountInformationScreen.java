@@ -1,3 +1,6 @@
+/*
+    Gabriel Agache
+ */
 package com.example.clienthttp;
 
 import android.content.SharedPreferences;

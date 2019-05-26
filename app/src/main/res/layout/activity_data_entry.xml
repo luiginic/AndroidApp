@@ -92,7 +92,9 @@
                     card_view:layout_constraintTop_toBottomOf="@+id/water_tw"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="changeNumberOfGlasses"/>
+                    android:onClick="changeNumberOfGlasses"
+                    android:background="@drawable/minus_glass_button24dp"
+                    />
 
                 <ImageView
                     android:id="@+id/plus_glass_button"
@@ -104,10 +106,10 @@
                     card_view:layout_constraintBottom_toBottomOf="parent"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintTop_toBottomOf="@+id/water_tw"
-                    android:backgroundTint="@color/colorAccent"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="changeNumberOfGlasses"/>
+                    android:onClick="changeNumberOfGlasses"
+                    android:background="@drawable/plus_glass_button24dp"/>
 
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
@@ -439,6 +441,93 @@
                     />
 
 
+
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp"
+            card_view:cardCornerRadius="20dp"
+            card_view:cardElevation="5dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/calImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/calTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Calories"
+                    android:textColor="#666"
+                    android:textSize="20sp"
+                    card_view:layout_constraintStart_toEndOf="@+id/calImage"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/calValue"
+                    android:layout_width="60dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:text="0"
+                    android:textColor="#000"
+                    android:textSize="30sp"
+
+                    android:textStyle="bold"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/calImage" />
+
+                <TextView
+                    android:id="@+id/calValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="cal"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toEndOf="@+id/calValue"
+                    card_view:layout_constraintTop_toBottomOf="@+id/calTV"
+                    />
+
+                <SeekBar
+                    android:id="@+id/seekBarCal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:progressBackgroundTint="#000"
+                    android:progressTint="#FFD300"
+
+                    android:thumbTint="#FFD300"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toEndOf="@+id/calValueTV"
+                    card_view:layout_constraintTop_toBottomOf="@+id/calTV" />
 
 
             </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,8 @@
+/*
+    Nicola Luigi
+    Gabriel Agache
+ */
 package com.example.clienthttp.treatment;
-
 
 import android.content.Context;
 import android.content.SharedPreferences;

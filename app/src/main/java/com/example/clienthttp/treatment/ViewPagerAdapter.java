@@ -1,3 +1,7 @@
+/*
+    Luigi Nicola: created
+    Gabriel Agache: modified and added all relevant code
+ */
 package com.example.clienthttp.treatment;
 
 import android.os.Bundle;
@@ -10,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
