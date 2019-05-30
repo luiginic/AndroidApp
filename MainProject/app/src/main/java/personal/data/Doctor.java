@@ -1,5 +1,8 @@
 package personal.data;
 
+/*
+Flavius Popescu
+ */
 import java.io.Serializable;
 
 public class Doctor extends PersonalData implements Serializable {
@@ -7,5 +10,9 @@ public class Doctor extends PersonalData implements Serializable {
 
     public void setCabinetAddress(String cabinetAddress) {
         this.cabinetAddress = cabinetAddress;
+    }
+
+    public String getCabinetAddress() {
+        return cabinetAddress;
     }
 }

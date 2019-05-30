@@ -1,6 +1,8 @@
 package personal.data;
 
-
+/*
+Flavius Popescu
+ */
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -83,7 +85,8 @@ public class PersonalData implements Serializable {
     }
 
     public int getAge(Date dateOfBirth) {
-
+        if (dateOfBirth == null)
+            return 0;
         Calendar today = Calendar.getInstance();
         Calendar birthDate = Calendar.getInstance();
 

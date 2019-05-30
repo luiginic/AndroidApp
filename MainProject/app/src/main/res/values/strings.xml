@@ -2,11 +2,11 @@
     <string name="app_name">ClientHTTP</string>
     <string name="profileInfo">Profile info</string>
     <string name="name_goes_here">Name goes here</string>
-    <string name="treatment">View treatment</string>
+
     <string name="reactions">Reactions</string>
     <string name="title_activity_stats_screen">StatsScreen</string>
     <string name="my_apointments">My apointments</string>
-    <string name="make_an_apointment">Make an apointment</string>
+
     <string name="this_is_the_logo">This is the logo</string>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
@@ -21,16 +21,31 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <!--Strings related to persoanl details-->
     <string name="pacient_id">Pacient ID</string>
+    <string name="log_in">Log in</string>
+    <string name="pacientIdTitle">Pacient ID:</string>
+    <string name="pacient_id_default">No ID assigned yet!</string>
+    <string name="cnpTitle">CNP:</string>
+    <string name="CNP_default">The persoanl numeric code is not set yet!</string>
+    <string name="phoneNoTitle">Phone no.:</string>
+    <string name="phoneNo_default">No phone number provided!</string>
+    <string name="birthDate_default">Birth date not provided!</string>
+    <string name="nameTitle">Name:</string>
+    <string name="birthDateTitle">Birth date:</string>
+    <string name="doctorTitle">Doctor:</string>
+    <string name="doctorAddressTitle">Address:</string>
+    <string name="doctorAddress_default">Unknown address for your doctor!</string>
+    <!--Strings related to buttons-->
+    <string name="send_btn">Send</string>
+    <string name="treatment">View treatment</string>
+    <string name="make_an_apointment">Make an apointment</string>
     <string name="continueBtn">Continue</string>
-    <string name="heart_rate">Heart Rate</string>
-    <string name="heart_rate_units">bpm</string>
-    <string name="hydratation">Hydratation</string>
-    <string name="hydratation_units">l</string>
-    <string name="weight">Weight</string>
-    <string name="weight_units">Kg</string>
-    <string name="steps">Steps</string>
-    <string name="steps_units">steps</string>
-    <string name="temperature">Temperature</string>
-    <string name="temperature_units">°C</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+
+
 </resources>

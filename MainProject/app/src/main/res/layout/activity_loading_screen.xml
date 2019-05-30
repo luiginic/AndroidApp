@@ -4,34 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loading_screen">
+    tools:context=".LoadingScreen">
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/anotherColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="223dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/anotherColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginTop="303dp"
-        android:layout_marginEnd="168dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="120dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="24dp"
         android:contentDescription="@string/this_is_the_logo"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_icon" />
+        app:srcCompat="@drawable/ic_logo_vector" />
 </android.support.constraint.ConstraintLayout>
